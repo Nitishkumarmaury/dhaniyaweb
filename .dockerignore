@@ -1,0 +1,16 @@
+node_modules
+.next
+.git
+.gitignore
+*.md
+.env
+.env.local
+.env.example
+docker-compose.yml
+docker-compose.override.yml
+Dockerfile
+.dockerignore
+nginx
+.github
+coverage
+.vscode

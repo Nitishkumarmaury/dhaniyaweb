@@ -1,0 +1,16 @@
+{
+  "name": "Dhanya Trader's",
+  "short_name": "Dhanya",
+  "description": "Lab Chemicals, Glassware, Instruments & Industrial Chemicals",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0A4D8C",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    }
+  ]
+}
