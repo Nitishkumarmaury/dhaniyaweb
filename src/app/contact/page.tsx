@@ -2,13 +2,17 @@ import type { Metadata } from 'next';
 import ContactPageContent from './ContactPageContent';
 
 export const metadata: Metadata = {
-  title: 'Contact Us — Get in Touch',
+  title: 'Contact Us — Lab Chemical Supplier in Mohali, Punjab',
   description:
-    "Contact Dhanya Trader's for laboratory chemicals, glassware, instruments, and industrial chemical inquiries. Visit our Mohali office or call us today.",
+    "Contact Dhanya Trader's for laboratory chemicals, glassware, instruments, and industrial chemical inquiries. Visit us at Plot 228, Industrial Area Phase 9, Mohali. Call +91-6239015661 or email Dhanyatraders06@gmail.com.",
+  alternates: {
+    canonical: 'https://dhanyatraders.live/contact',
+  },
   openGraph: {
-    title: "Contact Us | Dhanya Trader's",
+    title: "Contact Dhanya Trader's | Lab Chemical Supplier Mohali",
     description:
-      'Reach out for quotes, product information, or any questions about our lab and industrial chemical supply services.',
+      'Reach out for quotes, product information, or any questions. Located in Mohali, Punjab. Call, email or visit us today.',
+    url: 'https://dhanyatraders.live/contact',
   },
 };
 

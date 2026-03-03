@@ -3,13 +3,17 @@ import { Suspense } from 'react';
 import ProductsPageContent from './ProductsPageContent';
 
 export const metadata: Metadata = {
-  title: 'Products — Laboratory Chemicals, Glassware, Instruments & More',
+  title: 'Products — Lab Chemicals, Glassware, Instruments & Industrial Chemicals',
   description:
-    "Browse our complete range of laboratory chemicals, glassware, instruments, consumables, liquid handling, and research products from 20+ leading brands including Merck, Thermo Fisher, Sigma Aldrich, Borosil.",
+    "Browse 1000+ laboratory chemicals, glassware, instruments, consumables, solvents & research products from Merck, Thermo Fisher, Sigma Aldrich, Borosil, SRL, Loba Chemie & 20+ brands. Best prices in Mohali, Punjab.",
+  alternates: {
+    canonical: 'https://dhanyatraders.live/products',
+  },
   openGraph: {
-    title: "Products | Dhanya Trader's",
+    title: "Products | Dhanya Trader's — Lab & Industrial Chemical Catalog",
     description:
-      'Explore laboratory chemicals, glassware, instruments, and industrial chemicals from 20+ trusted brands.',
+      'Explore laboratory chemicals, glassware, instruments, and industrial chemicals from 20+ trusted global brands. Competitive pricing & fast delivery.',
+    url: 'https://dhanyatraders.live/products',
   },
 };
 

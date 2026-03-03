@@ -3,13 +3,17 @@ import { Suspense } from 'react';
 import InquiryPageContent from './InquiryPageContent';
 
 export const metadata: Metadata = {
-  title: 'Request a Quote — Get Competitive Pricing',
+  title: 'Request a Quote — Get Best Prices on Lab Chemicals & Equipment',
   description:
-    "Submit your inquiry for laboratory chemicals, glassware, instruments, or industrial chemicals. Get competitive quotes from Dhanya Trader's within 24 hours.",
+    "Submit your inquiry for laboratory chemicals, glassware, instruments, or industrial chemicals. Get the best competitive quotes from Dhanya Trader's, Mohali. Fast response within 24 hours. Bulk orders welcome.",
+  alternates: {
+    canonical: 'https://dhanyatraders.live/inquiry',
+  },
   openGraph: {
-    title: "Request a Quote | Dhanya Trader's",
+    title: "Request a Quote | Dhanya Trader's — Best Prices Guaranteed",
     description:
-      'Get competitive pricing on lab chemicals, glassware, and instruments. Quick response guaranteed.',
+      'Get competitive pricing on lab chemicals, glassware, instruments & industrial chemicals. Quick response within 24 hours.',
+    url: 'https://dhanyatraders.live/inquiry',
   },
 };
 
