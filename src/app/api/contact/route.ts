@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getDatabase, COLLECTIONS } from '@/lib/mongodb';
-import { sendEmail, getContactNotificationEmail } from '@/lib/email';
+import { sendContactTelegram } from '@/lib/telegram';
 
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
 const RATE_LIMIT = 5;
@@ -65,8 +65,8 @@ export async function POST(request: NextRequest) {
     const db = await getDatabase();
     await db.collection(COLLECTIONS.CONTACTS).insertOne(contact);
 
-    const emailData = getContactNotificationEmail(contact);
-    sendEmail(emailData).catch(console.error);
+    // Send Telegram notification (fire and forget)
+    sendContactTelegram(contact).catch(console.error);
 
     return NextResponse.json(
       { success: true, message: 'Message sent successfully.' },

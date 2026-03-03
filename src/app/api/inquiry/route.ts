@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getDatabase, COLLECTIONS } from '@/lib/mongodb';
-import { sendEmail, getInquiryNotificationEmail } from '@/lib/email';
+import { sendInquiryTelegram } from '@/lib/telegram';
 
 // Rate limiting map (in-memory, resets on deploy)
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
@@ -78,9 +78,8 @@ export async function POST(request: NextRequest) {
     const db = await getDatabase();
     await db.collection(COLLECTIONS.INQUIRIES).insertOne(inquiry);
 
-    // Send notification email (fire and forget)
-    const emailData = getInquiryNotificationEmail(inquiry);
-    sendEmail(emailData).catch(console.error);
+    // Send Telegram notification (fire and forget)
+    sendInquiryTelegram(inquiry).catch(console.error);
 
     return NextResponse.json(
       { success: true, message: 'Inquiry submitted successfully.' },
