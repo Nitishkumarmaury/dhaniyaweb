@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getDatabase, COLLECTIONS } from '@/lib/mongodb';
 import { sendInquiryTelegram } from '@/lib/telegram';
 
 // Rate limiting map (in-memory, resets on deploy)
@@ -69,17 +68,18 @@ export async function POST(request: NextRequest) {
       product: String(product).trim().slice(0, 500),
       quantity: quantity ? String(quantity).trim().slice(0, 200) : '',
       message: message ? String(message).trim().slice(0, 2000) : '',
-      status: 'new' as const,
-      createdAt: new Date(),
-      ip,
     };
 
-    // Store in MongoDB
-    const db = await getDatabase();
-    await db.collection(COLLECTIONS.INQUIRIES).insertOne(inquiry);
+    // Send directly to Telegram
+    const result = await sendInquiryTelegram(inquiry);
 
-    // Send Telegram notification (fire and forget)
-    sendInquiryTelegram(inquiry).catch(console.error);
+    if (!result.success) {
+      console.error('Telegram send failed:', result.error);
+      return NextResponse.json(
+        { error: 'Failed to send inquiry. Please try again.' },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json(
       { success: true, message: 'Inquiry submitted successfully.' },

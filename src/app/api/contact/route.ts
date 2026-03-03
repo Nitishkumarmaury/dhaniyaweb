@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getDatabase, COLLECTIONS } from '@/lib/mongodb';
 import { sendContactTelegram } from '@/lib/telegram';
 
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
@@ -58,15 +57,18 @@ export async function POST(request: NextRequest) {
       phone: phone ? String(phone).trim().slice(0, 20) : '',
       subject: subject ? String(subject).trim().slice(0, 200) : '',
       message: String(message).trim().slice(0, 2000),
-      createdAt: new Date(),
-      ip,
     };
 
-    const db = await getDatabase();
-    await db.collection(COLLECTIONS.CONTACTS).insertOne(contact);
+    // Send directly to Telegram
+    const result = await sendContactTelegram(contact);
 
-    // Send Telegram notification (fire and forget)
-    sendContactTelegram(contact).catch(console.error);
+    if (!result.success) {
+      console.error('Telegram send failed:', result.error);
+      return NextResponse.json(
+        { error: 'Failed to send message. Please try again.' },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json(
       { success: true, message: 'Message sent successfully.' },
